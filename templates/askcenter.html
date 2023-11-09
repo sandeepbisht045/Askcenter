@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Home-Askcenter{% endblock %}
+{% block css %}
+#textarea_alert_text{display: none;color: #d9212c;font-size: 13px;font-weight: 400;margin-left: 17%;}
+#txtarea{width:70%;resize: none;background-image: linear-gradient(#F5F7FA,#B8C6DB);}
+@keyframes move {
+  0%   {font-size: x-large}
+  25%  {font-size: larger}
+  50%  {font-size: large}
+  75%  {font-size: medium}
+  100% {font-size: x-large}
+}
+{% endblock %}
+{% block content %}
+
+<div class="container mt-4 mb-5" style="border:1px solid #00000029; border-radius:1%;">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-9">
+            <!-- post form -->
+            <form action="/askcenter/posts" method="post">
+                {%csrf_token%}
+              <div class="mb-3 mt-3 row">
+                  <div class="col-sm-10">
+                    <textarea name="user_posts" required  data-alert="{{alert}}"
+                     rows="4"
+                    class="form-control" id="txtarea">{{text}} </textarea>
+
+                  </div>
+                </div>
+          <input id="post_btn" type="submit" value="Post Question" class="mb-4" style="background-color:
+           #1B74E4;border-radius: 25px; width: 20%;border: 2px solid blue;margin-left:15%;">
+                
+                </form>
+<!-- post form -->
+        </div>
+        <div class="col-md-2" ></div>
+    </div>
+<!-- view post -->
+<div id="render_posts">
+  {%if not null%}
+{% for post in all_posts %}
+<div class="row " >
+    <div class="col-md-2"></div>
+    <div class="card col-md-9 mb-2" style="width: 60%;background-image: linear-gradient(#F5F7FA,#B8C6DB);">
+        <div class="card-body">
+          <h5 class="card-title">{{post.user.first_name}} {{post.user.last_name}}</h5>
+          <span style="font-size:14px ;" class="card-subtitle mb-2 text-muted">{{post.created_at}}</span>
+          <p class="card-text mt-2">{{post.content}}</p>
+       <a style="text-decoration: none;" href="/askcenter/{{post.id}}/answers">Reply</a>
+        </div>
+      </div>
+</div>
+{%endfor%}
+{%endif%}
+</div>
+<!-- view post -->
+
+</div>
+{%if null%}
+<div id="no_post">
+  <div>No Post to show</div> <div class="mt-5" id="first_post">Write your first Post now</div>
+</div>
+{%endif%}
+
+{% endblock %}

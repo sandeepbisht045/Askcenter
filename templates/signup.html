@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Sign Up - My Website{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center justify-content-center">
+    <div class="card mt-4" style="width: 25rem;background-color: aliceblue;">
+        <div class="card-header"><b>Sign Up</b></div>
+        <div class="card-body">
+            <form method="post" action="/askcenter/signup">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="first_name" class="form-label">First Name</label>
+                    <input value="{{first_name}}" type="text" class="form-control" id="first_name" name="first_name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="last_name" class="form-label">Last Name</label>
+                    <input value="{{last_name}}" type="text" class="form-control" id="last_name" name="last_name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input value="{{email_value}}" type="email" class="form-control" id="email" name="email" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+            {% if error_message %}
+            <p class="text-danger mt-2">{{ error_message }}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
