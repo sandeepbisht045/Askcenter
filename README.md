@@ -15,3 +15,5 @@ and inside that file add below line-
  Then create superuser by this command - python3 manage.py createsuperuser
  Now run this - python3 manage.py runserver
 
+ Go to :  http://localhost:8000/askcenter
+
