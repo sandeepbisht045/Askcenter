@@ -70,6 +70,8 @@ def user_posts(request):
     if request.session.get('user_id'):
         if request.method == 'POST':
             content = request.POST['user_posts']
+            if not content.strip():
+                return render(request, "askcenter.html", {"all_posts": Question.objects.all().order_by('-id')})
             Question.objects.create(content=content, user=User.objects.get(
                     id=request.session.get("user_id")))
             return render(request, "askcenter.html", {"all_posts": Question.objects.all().order_by('-id')})

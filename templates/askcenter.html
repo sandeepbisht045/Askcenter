@@ -14,7 +14,7 @@
 {% endblock %}
 {% block content %}
 
-<div class="container mt-4 mb-5" style="border:1px solid #00000029; border-radius:1%;">
+<div class="container mt-4 mb-5" style="border:1px solid #0C4B51; border-radius:1%;">
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-9">
@@ -23,7 +23,7 @@
                 {%csrf_token%}
               <div class="mb-3 mt-3 row">
                   <div class="col-sm-10">
-                    <textarea name="user_posts" required  data-alert="{{alert}}"
+                    <textarea minlength="20" name="user_posts" required  data-alert="{{alert}}"
                      rows="4"
                     class="form-control" id="txtarea">{{text}} </textarea>
 
@@ -43,12 +43,12 @@
 {% for post in all_posts %}
 <div class="row " >
     <div class="col-md-2"></div>
-    <div class="card col-md-9 mb-2" style="width: 60%;background-image: linear-gradient(#F5F7FA,#B8C6DB);">
+    <div class="card col-md-9 mb-2" style="width: 60%;background-color: #0C4B51;">
         <div class="card-body">
-          <h5 class="card-title">{{post.user.first_name}} {{post.user.last_name}}</h5>
-          <span style="font-size:14px ;" class="card-subtitle mb-2 text-muted">{{post.created_at}}</span>
-          <p class="card-text mt-2">{{post.content}}</p>
-       <a style="text-decoration: none;" href="/askcenter/{{post.id}}/answers">Reply</a>
+          <h5 style="color: #40BEA9;" class="card-title">{{post.user.first_name}} {{post.user.last_name}}</h5>
+          <span style="font-size:14px ;" class="card-subtitle mb-2 text-white">{{post.created_at}}</span>
+          <p class="card-text mt-2 text-white">{{post.content}}</p>
+       <a style="text-decoration: none;" class="text-secondary" href="/askcenter/{{post.id}}/answers"><b>Reply</b></a>
         </div>
       </div>
 </div>
